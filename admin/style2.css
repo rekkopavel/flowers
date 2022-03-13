@@ -1,0 +1,77 @@
+body {
+	font: normal 14px verdana;
+	}
+
+ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	width: 180px; /* Width of Menu Items */
+	border-bottom: 1px solid #ccc;
+	}
+
+ul li {
+	position: relative;
+	}
+	
+li ul {
+	position: absolute;
+/*	left: 149px; /* Set 1px less than menu width */
+/*	top: 0; */
+	left: 0px; /* Set 1px less than menu width */
+	top: 25px; 
+	
+	display: none;
+	}
+
+/* Styles for Menu Items */
+ul li a {
+	display: block;
+	text-decoration: none;
+	color: #777;
+	background: #fff; /* IE6 Bug */
+	padding: 5px;
+	border: 1px solid #ccc;
+	border-bottom: 0;
+	}
+
+/* Fix IE. Hide from IE Mac \*/
+* html ul li { float: left; height: 1%; }
+* html ul li a { height: 1%; }
+/* End */
+
+ul li a:hover { color: #E2144A; background: #f9f9f9; } /* Hover Styles */
+		
+li ul li a { padding: 2px 5px; } /* Sub Menu Styles */
+		
+li:hover ul, li.over ul { display: block; } /* The magic */
+
+div.mmenu{
+	float: left;
+	margin-right:5px; 
+}
+
+div.nav{
+		
+}
+
+#header{
+	clear : both;
+	width : 100%;
+}
+
+#content{
+	clear : both;
+	width : 100%;
+	margin: 0px 20px 0 20px;
+	padding-top : 20px; 
+	text-align:center;
+}
+
+#footer{
+	clear : both;
+	text-align : right;
+}
+a {
+	color: Black;
+}

@@ -1,0 +1,471 @@
+<!DOCTYPE html public "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+        <HEAD>
+                <TITLE>Редактор:работа с документом</TITLE>
+                <META http-equiv="Content-Type" content="text/html; charset=windows-1251">
+				
+                <SCRIPT language="JavaScript" src="general.js"></SCRIPT>
+                <SCRIPT language="JavaScript" src="table.js"></SCRIPT>
+                <SCRIPT language="JavaScript" src="img.js"></SCRIPT>
+                <SCRIPT language="JavaScript" src="getcurelement.js"></SCRIPT>
+                <SCRIPT language="JavaScript" src="format_paste.js"></SCRIPT>
+                <SCRIPT language="JavaScript" src="functions.js"></SCRIPT>
+                <SCRIPT>
+                var DocObj = new Object();
+                var oDocForm = window.dialogArguments;
+                var FormDocName = oDocForm.name;
+                DocObj.docname = window.document;
+                </SCRIPT>
+                <LINK rel="StyleSheet" type="text/css" href="">
+                <LINK rel="StyleSheet" type="text/css" href="menu.css">
+                <LINK rel="StyleSheet" type="text/css" href="dialog_style.css">
+                <LINK rel="StyleSheet" type="text/css" href="styles.css">
+                <SCRIPT>
+                document.styleSheets(0).href=oDocForm.css;
+                if (screen){
+                        window.dialogWidth=screen.width;
+                        window.dialogHeight=(screen.height-25)+'px';
+                        window.dialogTop=0;
+                }
+
+                var ie6 = navigator.appVersion.indexOf("MSIE 8.")>0 || navigator.appVersion.indexOf("MSIE 7.")>0 || navigator.appVersion.indexOf("MSIE 5.5")>0||navigator.appVersion.indexOf("MSIE 6.")>0;
+                var str1=window.self.location.search.toString();
+                if (str1=="")
+                str1="?f1+text+nostyle+450+400"
+                var str2=str1.slice(1);
+                var str3=str2.split('+')
+                s="document.createStyleSheet('"+str3[2]+"')";
+                window.execScript(s,"JavaScript");
+
+                var strAttr = "status:no;dialogWidth:300px;dialogHeight:300px;help:no;scroll:no;";
+                var z=1;
+                var B = new Array();
+                var kol=0
+                var paste=0
+                var cut=0
+                var drop=0
+
+                function saveflagf(){
+                        if (document.forms.f0.elements.saveflag.checked==true)save();
+                        document.forms.f0.elements.saveflag.checked=false;
+                }
+
+                function save(){
+        if (z==100)
+        {
+                for(z=0;z<100;z++)
+                B[z]=B[z+1];
+                B[99]=document.all.edit.innerHTML;
+                kol=99
+        }
+        else
+        {
+                B[z]=document.all.edit.innerHTML
+                kol=z
+                z=z+1
+        }
+        document.forms.f0.saveflag1.checked=false;
+}
+
+function myundo()
+{
+        if (document.forms.f0.saveflag1.checked==true)
+        save();
+        if(z>1)
+        {
+                document.all.edit.innerHTML=B[z-2];
+                z=z-1;
+        }
+}
+
+function myredo()
+{
+        if(z<(kol+1))
+        {
+                document.all.edit.innerHTML=B[z]
+                z=z+1
+        }
+}
+
+function array1()
+{
+        str12=""
+        for(j=0;j<100;j++)
+                str12=str12+"B("+j+")="+B[j]+";"
+}
+
+function key()
+{
+        if (event.ctrlKey && event.shiftKey && event.keyCode == 90)
+                myredo();
+        else if (event.ctrlKey && event.keyCode == 90)
+        {
+                myundo();
+                event.returnValue =false;
+        }
+        else if (event.keyCode == 13||event.keyCode == 32||event.keyCode == 8||event.keyCode == 9||event.keyCode == 46)
+                save();
+        else if(event.ctrlKey && event.keyCode == 73)
+        {
+                if (document.forms.f0.saveflag1.checked==true)
+                save();
+                document.execCommand('Italic')
+                save();
+                event.returnValue =false;
+        }
+        else if(event.ctrlKey && event.keyCode == 66)
+        {
+                if (document.forms.f0.saveflag1.checked==true)
+                save();
+                document.execCommand('Bold')
+                save();
+                event.returnValue =false;
+        }
+        else if(event.ctrlKey && event.keyCode == 85)
+        {
+                if (document.forms.f0.saveflag1.checked==true)
+                        save();
+                document.execCommand('Underline')
+                save();
+                event.returnValue =false;
+        }
+        else if(event.ctrlKey && event.keyCode == 65)document.execCommand('SelectAll');
+}
+
+function flag()
+{
+        if (event.keyCode != 32&event.keyCode != 13)
+                document.forms.f0.saveflag1.checked=true
+}
+
+function cursor ()
+{
+        curs=event.clientX;
+        return(curs)
+}
+
+function checkKey()
+{
+        if (window.event.shiftKey)
+        {
+                   document.all.edit.focus();
+                document.selection.createRange().pasteHTML('<br>');
+           }
+}
+function anc() 
+{
+var strAttr = "status:no;dialogWidth:200px;dialogHeight:130px;help:no;scroll:no;";
+	if(ie6) 
+	{
+		if(window.self.document.selection.type=="Control") 
+		{
+			
+		} 
+		else
+    {
+			  document.all.edit.focus();
+        rgn = document.selection.createRange();
+        if(result=window.showModalDialog('anckor.htm?',window.document,strAttr))rgn.pasteHTML(result),save();
+    } 
+  }
+	else
+		alert("Aey ?aaiou a ?aaaeoi?a Aai iaiaoiaei a?aoca? Internet Explorer aa?nee 5.5 e auoa")
+}
+function send1()
+{      var  result, result1,result2="";
+        var re1=/BORDER-RIGHT: 1px dotted; BORDER-TOP: 1px dotted; BORDER-LEFT: 1px dotted;/g;
+        var re2=/BORDER-BOTTOM: 1px dotted/g;
+  result=document.all.edit.innerHTML;
+result1=result.replace(re1,'');
+result2=result1.replace(re2,'');
+document.all.edit.innerHTML=result2;
+        if(ie6)
+        {
+                window.returnValue = ''+result2;
+        }
+        else
+                alert("Для работы в редакторе Вам необходим браузер Internet Explorer версии 5.5 и выше")
+}
+
+function send()
+{
+        var send_f=0
+        send_str_stay=document.all.edit.innerHTML;
+        send_str=document.all.edit.innerHTML;
+        while(send_f==0)
+        {
+                send_k=send_str.search('ondblclick=');
+                send_str0=send_str.slice(send_k)
+                send_k1=send_str0.search(';')
+                send_k2=send_k+send_k1+1
+                send_str1=send_str.slice(0,send_k);
+                send_str2=send_str.slice(send_k2+2);
+                send_str_last=send_str1+send_str2
+                if (send_str_last.search('ondblclick=')==(-1))
+                        send_f=1;
+                else
+                        send_str=send_str_last;
+        }
+        window.opener.document.forms.f1(0).value=send_str_last
+        document.all.edit.innerHTML=send_str_stay;
+}
+var tflag=0;
+function chflag()
+{
+ if (tflag==0)
+  {tflag=1}
+  else
+  {tflag=0}
+  return(tflag)
+}
+function Vbord1 ()
+{
+        var  result, result1="";
+        var re=/<TABLE/g;
+  result=document.all.edit.innerHTML;
+result1=result.replace(re,'<TABLE style="border-style: dotted; border-width: 1px"');
+document.all.edit.innerHTML=result1;
+}
+function Vbord2 ()
+{
+        var  result, result1,result2="";
+        var re1=/BORDER-RIGHT: 1px dotted; BORDER-TOP: 1px dotted; BORDER-LEFT: 1px dotted;/g;
+        var re2=/BORDER-BOTTOM: 1px dotted/g;
+  result=document.all.edit.innerHTML;
+result1=result.replace(re1,'');
+result2=result1.replace(re2,'');
+document.all.edit.innerHTML=result2;
+}
+function Vis()
+
+{
+if (tflag==0)
+   {Vbord1()}
+ else {Vbord2()}
+}
+function foc()
+{
+document.all.edit.focus();
+}
+                                                </SCRIPT>
+        </HEAD>
+        <BODY style="BORDER-RIGHT: 1px inset; BORDER-TOP: 1px inset; BORDER-LEFT: 1px inset; BORDER-BOTTOM: 1px inset" leftmargin="0" topmargin="0" scroll="no" unselectable="on" onFocus="foc();" onKeyUp="return false;">
+
+        <TABLE unselectable="on" height="100%" cellspacing="0" cellpadding="0" width="100%" bgcolor="#D5D2CA" border="0" onFocus="foc();" id="tabl">
+                <FORM name="f0">
+                        <TR ondragstart="handleDrag(0)" onMouseUp="press(false)" onMouseDown="press(true)" onMouseOver="hover(true)" onMouseOut="hover(false)" onmouseleave>
+                                <TD class="menu">
+                                        <TABLE cellpadding="0" cellspacing="0" style="BACKGROUND-IMAGE:url(images/bg.gif);backgroundRepeat:repeat-y;" border="0" width="100%" class="block" >
+                                                <TR>
+                                                <TD  align="center" width="20"><IMG src="images/send.gif" id="bPost" align="absMiddle" width="20" height="20" onClick="send1();window.self.close();" alt="Отправить" unselectable="on" menu="on"></TD>
+                                                <TD  align="center" width="20"><IMG src="images/icon_cut.gif" id="bCut" align="absMiddle" width="20" height="20" alt="Вырезать (Ctrl+X)" onClick="Exec('cut');" unselectable="on" menu="on"></TD>
+                                                <TD  align="center" width="20"><IMG src="images/icon_copy.gif" id="bCopy" align="absMiddle" width="20" height="20" alt="Копировать (Ctrl+C)" onClick="Exec('copy');" iscontenteditable="false" unselectable="on" menu="on"></TD>
+                                                <TD  align="center" width="20"><IMG src="images/icon_paste.gif" id="bPaste" align="absMiddle" width="20" height="20" alt="Вставить (Ctrl+V)" onClick="Exec('paste');" unselectable="on" menu="on"></TD>
+                                                <TD  align="center" width="20"><IMG src="images/pasteformat.gif" alt="Вставить, используя фильтр" unselectable="on" width="20" height="20" onClick="optimize();" menu="on"></TD>
+                                                <TD  align="center" width="20"><IMG src="images/icon_select_all.gif" id="bSelect" alt="Выделить все" align="absMiddle" width="20" height="20" onClick="Exec('SelectAll');" iscontenteditable="false" unselectable="on" menu="on" menu="on"></TD>
+                                                <TD  align="center" width="20"><IMG src="images/icon_undo.gif" id="bPrev" align="absMiddle" width="20" height="20" alt="Отменить (Ctrl+Z)" unselectable="on" onClick="myundo();" menu="on"></TD>
+                                                <TD  align="center" width="20"><IMG src="images/icon_redo.gif" id="bNext" align="absMiddle" width="20" height="20" alt="Вернуть (Ctrl+Shift+Z)" unselectable="on" onClick="myredo();" menu="on"></TD>
+                                                <TD  align="center" width="20"><IMG src="images/icon_ins_link.gif" id="bLink" align="absMiddle" width="20" height="20" alt="Гиперссылка" onClick="Exec('CreateLink');" unselectable="on" menu="on"></TD>
+                                                 
+                                                <TD  align="center" width="20"><IMG src="images/icon_ins_file.gif" id="bFile" align="absMiddle" width="20" height="20" alt="Файл" onClick="addlinkfile();" unselectable="on" menu="on"></TD>
+
+<!--                                                <TD  align="center" width="20"><IMG src="images/icon_ins_link.gif" id="bLink" align="absMiddle" width="20" height="20" alt="Гиперссылка" onClick="adda();" unselectable="on" menu="on"></TD>      -->
+
+                                                <TD  align="center" width="20"><IMG src="images/icon_ins_image.gif" id="bImage" align="absMiddle" width="20" height="20" alt="Вставить/редактировать картинку" unselectable="on" onClick="addimg();" menu="on"></TD>
+                                                <TD  align="center" width="20"><IMG src="images/icon_ins_table.gif" id="bTable" alt="Вставить/редактировать таблицу" unselectable="on" width="20" height="20" onClick="addtb();" unselectable="on" menu="on"></TD>
+												<TD  align="center" width="20"><IMG src="images/anc.gif" id="bAncor" alt="Вставить якорь" unselectable="on" width="20" height="20" onClick="anc();" unselectable="on" menu="on"></TD>
+                                                <TD  align="center" width="20"><IMG src="images/addtr.gif" id="addrow" alt="Вставить строку" unselectable="on" width="20" height="20" onClick="GetCurElement('row','add');" disabled class="disabled" menu="on"></TD>
+                                                <TD  align="center" width="20"><IMG src="images/addtd.gif" id="addcolumn" alt="Вставить столбец" unselectable="on" width="20" height="20" onClick="GetCurElement('column','add');" disabled class="disabled" menu="on"></TD>
+                                                <TD  align="center" width="20"><IMG src="images/deltr.gif" id="delrow" alt="Удалить строку" unselectable="on" width="20" height="20" onClick="GetCurElement('row','del');" disabled class="disabled" menu="on"></TD>
+                                                <TD  align="center" width="20"><IMG src="images/deltd.gif" id="delcolumn" alt="Удалить столбец" unselectable="on" width="20" height="20" onClick="GetCurElement('column','del');" disabled class="disabled" menu="on"></TD>
+                                                <TD  align="center" width="20"><IMG src="images/mrgcell.gif" id="mrgcolumn" alt="Объединить со следующей ячейкой" unselectable="on" width="20" height="20" onClick="GetCurElement('column','mrg');" disabled class="disabled" menu="on"></TD>
+                                                <TD  align="center" width="20"><IMG src="images/mrgcell.gif" id="mrgrow" alt="Объединить со следующим столбцом" unselectable="on" width="20" height="20" onClick="GetCurElement('row','mrg');" disabled class="disabled" menu="on"></TD>
+                                                <TD  align="center" width="20"><IMG src="images/icon_rule.gif" id="bRule" alt="Вставить горизонтальную лнию" align="absMiddle" width="20" height="20" onClick="Exec('InsertHorizontalRule')" unselectable="on" menu="on"></TD>
+                                                <TD  align="center" width="20"><IMG src="images/icon_ins_char.gif" id="bChar" alt="Вставить специальный символ" align="absMiddle" width="20" height="20" border="0" onClick="if (this.parentElement.className=='down')hideClass(document.all['characters']),setState(this,false); else showcharacters(),objects_state();" unselectable="on" menu="on"></TD>
+                                                <TD align="center">&nbsp;</TD>
+                                        </TR>
+                                        </TABLE>
+                                        </TD>
+                                </TR>
+                                <TR ondragstart="handleDrag(0)" >
+                                        <TD class="menu" valign="top">
+                <!--onMouseUp="press(false)" onMouseDown="press(true)" onMouseOver="hover(true)" onMouseOut="hover(false)"-->
+        <TABLE cellpadding="0" cellspacing="0" style="BACKGROUND-IMAGE:url(images/bg.gif);backgroundRepeat:repeat-y;" border="0" width="100%" onMouseOver="hover(true)" onMouseOut="hover(false)" class="block">
+                <TR>
+                        <TD  align="center" width="20"><IMG src="images/icon_left.gif" id="bLeftJustify" align="absMiddle" width="20" height="20" alt="Выравнивание по левому краю" unselectable="on" name="JustifyLeft" onClick="Exec(this.name);set_status(this.name);" menu="on"></TD>
+                        <TD  align="center" width="20"><IMG src="images/icon_center.gif" id="bCenter" align="absMiddle" width="20" height="20" alt="Выравнивание по центру" unselectable="on" name="JustifyCenter" onClick="Exec(this.name);set_status(this.name);" menu="on"></TD>
+                        <TD  align="center" width="20"><IMG src="images/icon_right.gif" id="bRightJustify" align="absMiddle" width="20" height="20" alt="Выравнивание по правому краю" unselectable="on" name="JustifyRight" onClick="Exec(this.name);set_status(this.name);" menu="on"></TD>
+                        <TD  align="center" width="20"><IMG src="images/icon_block.gif" id="bFullJustify" align="absMiddle" width="20" height="20" alt="Выравнивание по ширине" unselectable="on" name="JustifyFull" onClick="Exec(this.name);set_status(this.name);"  menu="on"></TD>
+                        <TD  align="center" width="20"><IMG src="images/icon_numlist.gif" id="bNumList" align="absMiddle" width="20" height="20" alt="Нумерация" unselectable="on" name="InsertOrderedList" onClick="Exec('InsertOrderedList');special_push(this);"  menu="on" name="list1"></TD>
+                        <TD  align="center" width="20"><IMG src="images/icon_bullist.gif" id="bBulList" align="absMiddle" width="20" height="20" alt="Маркеры" unselectable="on" name="InsertUnorderedList" onClick="Exec('InsertUnorderedList');special_push(this);" menu="on" name="list2"></TD>
+                        <TD  align="center" width="20"><IMG src="images/icon_outdent.gif" id="bOutdent" align="absMiddle" width="20" height="20" alt="Сдвиг влево" unselectable="on" name="Outdent" onClick="Exec(this.name);set_status(this.name);" menu="on" onMouseUp="press(false)" onMouseDown="press(true)"></TD>
+                        <TD  align="center" width="20"><IMG src="images/icon_indent.gif" id="bIndent" align="absMiddle" width="20" height="20" alt="Сдвиг вправо" unselectable="on" name="Indent" onClick="Exec(this.name);set_status(this.name);" menu="on" onMouseUp="press(false)" onMouseDown="press(true)"></TD>
+                        <TD  align="center" width="20"><IMG src="images/icon_bold.gif" id="bBold" align="absMiddle" width="20" height="20" alt="Жирный" name="bold" unselectable="on" onClick="Exec(this.name);set_status(this.name);" onmouseout="special_out(this);" menu="on" onMouseUp="press(false)" onMouseDown="press(true)" onmouseleave="special_out(this);" status="Bold"></TD>
+                        <TD  align="center" width="20"><IMG src="images/icon_italic.gif" id="bItalic" align="absMiddle" width="20" height="20" alt="Курсив" name="Italic" unselectable="on" onClick="Exec(this.name);set_status(this.name);" menu="on" onMouseUp="press(false)" onMouseDown="press(true)" status="Italic"></TD>
+                        <TD  align="center" width="20" ><IMG src="images/icon_underline.gif" id="bUnderline" align="absMiddle" width="20" height="20" alt="Подчеркнутый" name="Underline" unselectable="on" onClick="Exec(this.name);set_status(this.name);" menu="on" onMouseUp="press(false)" onMouseDown="press(true)" status="Underline"></TD>
+                        <TD  align="center" width="20"><IMG src="images/icon_strikethrough.gif" id="bStrikethrough" alt="Зачеркнутый" align="absMiddle" width="20" height="20" name="strikethrough" onClick="Exec(this.name);set_status(this.name);" unselectable="on" menu="on" onMouseUp="press(false)" onMouseDown="press(true)"></TD>
+
+                        <TD  align="center" width="20"><IMG src="images/UI_superscript.gif" id="bSuperscript" align="absMiddle" width="20" height="20" alt="Верхний индекс" unselectable="on" name="Superscript" onClick="Exec(this.name);set_status(this.name);" menu="on" onMouseUp="press(false)" onMouseDown="press(true)"></TD>
+                        <TD  align="center" width="20"><IMG src="images/UI_subscript.gif" id="bSubscript" align="absMiddle" width="20" height="20" alt="Нижний индекс" unselectable="on" name="Subscript" onClick="Exec(this.name);set_status(this.name);" menu="on" onMouseUp="press(false)" onMouseDown="press(true)"></TD>
+                         <TD  align="center" width="20"><IMG src="images/visibl.gif" id="bVisibl" align="absMiddle" width="20" height="20" alt="Границы таблиц" unselectable="on" name="Visibl"  onClick=" Vis(); chflag() " menu="on" onMouseUp="press(false)" onMouseDown="press(true)"></TD>
+                         
+                        <TD  align="center" width="36"><IMG src="images/icon_font.gif" id="bFont" align="absMiddle" width="36" height="20" alt="Шрифт" unselectable="on" onClick="if (this.parentElement.className=='down')hideClass(document.all['fonts']),setState(this,false); else showfonts(),objects_state();" menu="on"></TD>
+                        <TD  align="center" width="36"><IMG src="images/icon_size.gif" id="bSize" align="absMiddle" width="36" height="20" alt="Размер шрифта" unselectable="on" onClick="if (this.parentElement.className=='down')hideClass(document.all['sizes']),setState(this,false); else showsizes(),objects_state();" menu="on"></TD>
+                        <TD  align="center" valign="top"  width="36"><IMG src="images/icon_color_text1.gif" id="bText" alt="Цвет текста" align="absMiddle" width="36" height="18" onClick="if (this.parentElement.className=='down')hideClass(document.all['color']),setState(this,false); else showfcolors(),objects_state();" unselectable="on" menu="on"><TABLE cellpadding="0" cellspacing="0" border="0" id="tbl_fcolor" width="30"  height="2" style="background-color:black"><TR><TD style="padding:0;"><img src="images/0.gif" width="1" height="1" name="color_prv" menu="on"></TD></TR></TABLE></TD>
+                        <TD  align="center" valign="top" width="36"><IMG src="images/icon_color_fill1.gif" id="bFill" alt="Цвет заливки" align="absMiddle" width="36" height="18" onClick="if (this.parentElement.className=='down')hideClass(document.all['bccolor']),setState(this,false); else showbcolors(),objects_state();" unselectable="on" menu="on"><TABLE cellpadding="0" cellspacing="0" border="0" id="tbl_bcolor" width="30"  height="2" style="background-color:white"><TR><TD style="padding:0;"><img src="images/0.gif" width="1" height="1" name="bcolor_prv" menu="on"></TD></TR></TABLE></TD>
+                        <TD  align="center" >&nbsp;</TD>
+                                </TR>
+                                        </TABLE>
+                                        <OBJECT id="fonts" data="fonts.html" type="text/x-scriptlet"></OBJECT>
+                <SCRIPT for="fonts" event="onscriptletevent(name, data)">
+                        document.all['fonts'].style.display = 'none';
+                        setState(document.all['bFont'],false);
+                        if (data) {
+                        save();
+                        range();
+                        document.execCommand('FontName', false, data)
+                        document.all.edit.focus();
+                        save();
+                        }
+                </SCRIPT>
+                <OBJECT id="sizes" data="sizes.html" type="text/x-scriptlet"></OBJECT>
+                <SCRIPT for="sizes" event="onscriptletevent(name, data)">
+                        document.all['sizes'].style.display = 'none';
+                        setState(document.all['bSize'],false);
+                        if (data) {
+                        save();
+                        range();
+                        document.execCommand('FontSize', false, data)
+                        document.all.edit.focus();
+                        save();
+                        }
+                </SCRIPT>
+                <OBJECT id="characters" data="characters.html" type="text/x-scriptlet"></OBJECT>
+                <SCRIPT for="characters" event="onscriptletevent(name, data)">
+                        document.all['characters'].style.display = 'none';
+                        setState(document.all['bChar'],false);
+                        if (data) {
+                        save();
+                        document.all.edit.focus();
+                        var rng=document.selection.createRange();
+                        rng.pasteHTML(data);
+                        //document.execCommand('FontSize', false, data)
+                        //alert(data);
+                        //document.selection.createRange().innerText=data;
+                        save();
+
+                        }
+                </SCRIPT>
+                                </TR>
+                                <TR id="menuBottom">
+                                        <TD class="spacer" height="2"><IMG height="1" src="spacer.gif" align="left">
+                                        </TD>
+                                </TR>
+
+                                <TR>
+                                        <TD class="textedit" valign="top" height="100%">
+                                                <INPUT type="checkbox" name="saveflag1" style="display :none" onchange="paste=0;cut=0;drop=0;">
+                                                <INPUT type="checkbox" name="saveflag" onclick="saveflagf();" style="display :none" ID="Checkbox1">
+                                                </form>
+                                                <DIV id="edit" name="edit"
+                                                contenteditable="true"
+                                                onbeforecut="if (document.forms.f0.saveflag1.checked==true)save();" oncut="document.forms.f0.saveflag1.checked=true;cut=1"
+                                                onbeforepaste="if (document.forms.f0.saveflag1.checked==true)save();"
+                                                onpaste="document.forms.f0.saveflag1.checked=true;paste=1"
+                                                style="background-color:white;width:100;height:100;border-width:1; overflow-y:auto;overflow-x:auto; border-width:0; scrollbar-face-color :#C6C6C6; scrollbar-darkshadow-color :Gray;scrollbar-highlight-color: #efefef; font-family: Verdana;font-size:12;"
+                                                onKeyDown="key();GetCurElement('','','edit_onclick');document.all.tbl_fcolor.style.backgroundColor=getSelColor('ForeColor');document.all.tbl_bcolor.style.backgroundColor=getSelColor('BackColor');"
+                                                onKeyPress="if (cut==1||paste==1||drop==1){save();cut=0;paste=0;drop=0;};flag();"
+                                                onKeyUp="status();objects_state();return false;"
+                                                ondrop="save();document.forms.f0.saveflag1.checked=true;drop=1" height="100" width="100"
+                                                 onClick="status();objects_state();GetCurElement('','','edit_onclick');" style="padding:6;"
+                                                 onselectstart="document.all.tbl_fcolor.style.backgroundColor=getSelColor('ForeColor');document.all.tbl_bcolor.style.backgroundColor=getSelColor('BackColor');">
+                                                </DIV>
+                                                <IFRAME src="f1.htm" width="1" height="1" name="frm" frameborder="0" bgcolor="#e8e8e8"></IFRAME>
+                                        </TD>
+                                </TR>
+                                <TR>
+                                        <TD  valign="top" height="25" align="left" class="menu">
+                                                <TABLE cellpadding="3" cellspacing="4" width="1%" class="textedit">
+                                                <TR>
+                                                        <TD name="design" id="design" alt="Визуальный режим" unselectable="on" onClick="if(this.className=='modedown')return false;design();special_push(this);"  menu="on" class="modedown">
+                                                        &nbsp;Design&nbsp;
+                                                        </TD>
+                                                        <TD name="html" id="html" alt="HTML" unselectable="on" onClick="if(this.className=='modedown')return false;html();special_push(this);"  menu="on">
+                                                        &nbsp;HTML&nbsp;
+                                                        </TD>
+                                                </TR>
+                                                </TABLE>
+                                        </TD>
+                                </TR>
+                </TABLE>
+
+                <OBJECT id="color" data="colores.html" type="text/x-scriptlet">
+                </OBJECT>
+                <SCRIPT for="color" event="onscriptletevent(name, data)">
+                        document.all['color'].style.display = 'none';
+                        if (data) {
+                        save();
+                        range();
+                        document.execCommand('ForeColor', false, data);
+                        }
+                        setState(document.all['bText'], false);
+                        document.all.tbl_fcolor.style.backgroundColor=getSelColor('ForeColor');
+                        //setState(document.all['bFill'], false);
+                        document.all.edit.focus();
+                        save();
+
+                </SCRIPT>
+                <OBJECT id="bccolor" data="colores.html" type="text/x-scriptlet">
+                </OBJECT>
+                <SCRIPT for="bccolor" event="onscriptletevent(name, data)">
+                        document.all['bccolor'].style.display = 'none';
+                        if (data) {
+                        save();
+                        range();
+                        document.execCommand('BackColor', false, data);
+                        }
+//                        setState(document.all['bText'], false);
+                        setState(document.all['bFill'], false);
+                        document.all.tbl_bcolor.style.backgroundColor=getSelColor('BackColor');
+                        document.all.edit.focus();
+                        save();
+                </SCRIPT>
+                <SCRIPT>
+//document.all.edit.focus();
+/*RowsCount=document.all.tabl.rows.length;
+for(var i=0; i<RowsCount; i++)
+{
+        CellsCount=document.all.tabl.rows(i).cells.length;
+        for(var j=0; j<CellsCount; j++)
+        {
+                 document.all.tabl.rows[i].cells[j].onfocus=foc;
+        }
+}
+*/
+//document.all.edit.focus();
+//document.all.tabl.focus();;
+//alert();
+if(ie6)
+{
+
+        document.all.edit.style.width=oDocForm.editwidth;
+        document.all.edit.style.height=oDocForm.editheight;
+        //alert(oDocForm.editbody);
+        document.all.edit.innerHTML=oDocForm.editbody;
+        //alert("innerHTML="+document.all.edit.innerHTML);
+        if(window.opener!=null)
+                //alert(oDocForm.editbody);
+                document.all.edit.innerHTML=oDocForm.editbody;
+//alert(document.all.edit.innerHTML);
+        //document.all.edit.focus();
+}
+else
+        alert("Для работы в редакторе Вам необходим браузер Internet Explorer версии 5.5 и выше")
+if(document.all.edit.innerHTML==null)
+        B[0]=""
+else
+        B[0]=document.all.edit.innerHTML;
+                </SCRIPT>
+<script>
+//if(ie6)document.all.edit.focus();
+</script>

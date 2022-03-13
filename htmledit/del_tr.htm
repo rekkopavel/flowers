@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+	<title>Редактор:работа с таблицей</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<link rel=stylesheet type="text/css" href="style.css">
+<script language="JavaScript" src="functions.js"></script>
+<script>var str1=window.self.location.search.toString();
+	var str2=str1.slice(1);
+	if (window.opener.document.forms.f0.saveflag1.checked==true)
+window.opener.document.forms.f0.elements.saveflag.click();
+	function del(n){
+	if(window.opener.document.selection.type=="Control") {
+	var oTable = window.opener.document.selection.createRange().item(0);
+	if (str2=="tr"){	
+	oTable.deleteRow(n-1);
+	}
+	if (str2=="td"){
+	var nRowCount = oTable.rows.length;
+	for(var i=0; i<nRowCount; i++) 
+				oTable.rows(i).deleteCell(n-1);
+	}
+
+	}
+		window.opener.document.forms.f0.elements.saveflag.click();
+	}
+	
+	
+	
+	
+	
+</script>
+<title>Untitled</title>
+</head>
+<body>
+<form name="f1" action="del_tr.htm" method=post>
+	<table>
+		<tr>
+			<td>
+<script>if (str2=="tr")
+document.write("Уажите номер строки, которую хотите удалить. По умолчанию удаляется последняя.")
+else document.write("Уажите номер столбца, который хотите удалить. По умолчанию удаляется последний.")
+</script>
+			</td>
+			<td>
+				<input type=text size=4>
+			</td>
+		</tr>
+		<tr>
+			<td colspan=2>Например:
+			</td>
+		</tr>
+		<tr>
+			<td colspan=2>
+			<script>if (str2=="tr")
+document.write("<table border=1><tr><td>1</td></tr><tr><td>2</td></tr><tr><td>3</td></tr></table>")
+else document.write("<table border=1 width=70><tr><td>1<br><br></td><td>2<br><br></td><td>3<br><br></td></tr></table>")
+</script>
+				
+			</td>
+		</tr>
+		<tr>
+<td><img src="vimg/del.gif" onclick="del(document.forms.f1(0).value);"  alt="Удалить" unselectable="on" class=btnbig1  ondrag="return false;" onmousedown="BtnDown();" onmouseup="BtnUp();"></td>
+			<td>
+			<img src="vimg/close.gif"  alt="Закрыть окно" unselectable="on" class=btnbig1 onclick="window.opener.document.all.edit.focus();window.self.close();"  ondrag="return false;" onmousedown="BtnDown();" onmouseup="BtnUp();">
+				</td>
+		</tr>
+	</table>
+</form>
+
+</body>
+</html>

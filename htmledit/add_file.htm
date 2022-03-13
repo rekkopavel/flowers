@@ -1,0 +1,81 @@
+
+<!doctype html public "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>Редактор:работа с картинкой</title>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1251">
+<link rel=stylesheet type="text/css" href=dialog_style.css>
+<script language="JavaScript" src="functions.js"></script>
+<script>
+var oDocObj = window.dialogArguments;
+var Doc = oDocObj.docname;
+</script>
+<script>window.focus();
+	var str1=window.self.location.search.toString();
+	var str2=str1.slice(1);
+</script>
+<table border=0 class="dlg" cellpadding="0" cellspacing="2" width="100%" height="100%">
+	
+	<tr>
+	<td>&nbsp;</td>
+		<td>Адрес
+		</td>
+		<td><form name=f1>
+			<input type=text name=address size=33>
+		</td>
+	</tr>
+	<tr>
+	<td>&nbsp;</td>
+		<td colspan="2" align=right>
+			<input class="button" type="button" id="ok" onclick="loadpic();" alt="Закачать" unselectable=on class=btnbig ondrag="return false;" value="Закачать">
+		</td>
+	</tr>
+	
+	</form>
+	<tr >
+<td colspan="3" align="right">
+<input class="button" type="button" id="ok" onclick="img();window.self.close();" alt="Отправить" unselectable=on class=btnbig ondrag="return false;" value="OK">
+<input class="button" type="button" value="Отмена" alt="Отмена" unselectable=on class=btnbig1 onclick="Doc.all.edit.focus();window.self.close();return false;" ondrag="return false;" onmousedown="BtnDown();" onmouseup="BtnUp();">
+
+</td>
+</tr>
+
+</table>
+
+<script>
+	var str1=window.self.location.search.toString();
+	var str2=str1.slice(1);
+	var str3=str2.split('+')
+
+if (oDocObj.newpic==1){
+//document.forms.f1.prop.disabled=true;
+}
+else{
+
+}
+
+function img(){
+  var address=document.forms.f1.address.value;
+  if (str2=="")Doc.all.edit.focus(),Doc.execCommand('CreateLink',false,address);
+}
+
+	function loadpic()
+{
+		document.forms.f1.address.focus();
+		strPage = "load.html";
+		var strAttr = "status:no;dialogWidth:300px;dialogHeight:300px;help:no;scroll:no;";
+//html = showModalDialog(strPage,'', strAttr);
+//		alert(html);
+//alert(html);
+window.open ("fileman.php", "spfull","height=500,width=530,status=no,toolbar=no,menubar=no,location=no,resizable=yes,scrollbars=yes");
+//document.focus();
+//if (html) 
+//document.forms.f1.address.value=html;
+}
+
+
+</script>
+
+
+<div id=edit>
+</div>

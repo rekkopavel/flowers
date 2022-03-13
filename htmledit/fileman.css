@@ -1,0 +1,7 @@
+BODY { background-color: cccccc; margin:0px}
+TD, INPUT, SELECT { font-family: "MS Sans Serif"; font-size: xx-small; vertical-align: middle; }
+TABLE.dlg { border:0; }
+.dialog TD { align: left; height: 20; }
+border-bottom: 1px solid black; border-right: 1px solid black;
+font-size: x-small; width: 68; }
+SELECT { height: 75%; }

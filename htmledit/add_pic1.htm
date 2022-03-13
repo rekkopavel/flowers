@@ -1,0 +1,215 @@
+
+<!doctype html public "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>Редактор:работа с картинкой</title>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1251">
+<link rel=stylesheet type="text/css" href=dialog_style.css>
+<script language="JavaScript" src="functions.js"></script>
+<script>
+var oDocObj = window.dialogArguments;
+var Doc = oDocObj.docname;
+</script>
+<script>window.focus();
+	var str1=window.self.location.search.toString();
+	var str2=str1.slice(1);
+</script>
+<table border=0 class="dlg" cellpadding="0" cellspacing="2" width="100%" height="100%">
+<tr><td colspan="3"><table width="100%"><tr><td>Общие</td><td valign="middle" width="90%"><hr width="100%"></td></tr></table></td></tr>
+	<tr>
+	<td>&nbsp;</td>
+		<td>Ширина
+		</td>
+		<td>
+			<form name=f1>
+				<input type=text name=img_width value="" onchange="change(1);" size=5>
+				<input type=hidden name=hidden_width>
+		</td>
+	</tr>
+	<tr>
+	<td>&nbsp;</td>
+		<td>Высота
+		</td>
+		<td>
+			<input type=text name=img_height value="" onchange="change(2);" size=5>
+			<input type=hidden name=hidden_height>
+		</td>
+	</tr>
+	<tr>
+	<td>&nbsp;</td>
+		<td>Сохранять пропорции
+		</td>
+		<td>
+			<input type=checkbox name=prop onclick="prop1();" checked>
+		</td>
+	</tr>
+	<tr>
+	<td>&nbsp;</td>
+		<td>Подпись
+		</td>
+		<td>
+			<input type=text name=altpic size=33>
+		</td>
+	</tr>
+	<tr>
+	<tr>
+	<td>&nbsp;</td>
+		<td>Адрес
+		</td>
+		<td>
+			<input type=text name=address size=33>
+		</td>
+	</tr>
+	<tr>
+	<td>&nbsp;</td>
+		<td colspan="2" align=right>
+			<input class="button" type="button" id="ok" onclick="loadpic();" alt="Закачать" unselectable=on class=btnbig ondrag="return false;" value="Закачать">
+		</td>
+	</tr>
+	<tr><td colspan=3><table width="100%"><tr><td>Выравнивание</td><td valign="middle" width="90%"><hr width="100%"></td></tr></table></td></tr>
+	
+		<tr>
+		<td>&nbsp;</td>
+		<td colspan=2>
+			<table>
+				<tr>
+					<td align=center valign=top><nobr>не<br>применять</nobr>&nbsp;
+					</td>
+					<td align=center valign=top><nobr>по левому</nobr><br>краю&nbsp;
+					</td>
+					<td align=center valign=top><nobr>по правому</nobr><br>краю&nbsp;
+					</td>
+				</tr>
+				<tr>
+					<td align=center>
+						<input type=radio name=r1 value=1 checked>
+					</td>
+					<td align=center>
+						<input type=radio name=r1 value=1>
+					</td>
+					<td align=center>
+						<input type=radio name=r1 value=1>
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<!--<tr>
+		<td><img src="vimg/ok.gif" onclick="img()" alt="Отправить" unselectable=on class=btnbig ondrag="return false;" onmousedown="BtnDown();" onmouseup="BtnUp();">
+		</td>
+		<td><img src="vimg/cancel.gif" alt="Отменить" unselectable=on class=btnbig1 onclick="window.opener.document.all.edit.focus();window.self.close();" ondrag="return false;" onmousedown="BtnDown();" onmouseup="BtnUp();">
+		</td>
+	</tr>-->
+	</form>
+	<tr >
+<td colspan="3" align="right">
+<input class="button" type="button" id="ok" onclick="img();window.self.close();" alt="Отправить" unselectable=on class=btnbig ondrag="return false;" value="OK">
+<input class="button" type="button" value="Отмена" alt="Отмена" unselectable=on class=btnbig1 onclick="Doc.all.edit.focus();window.self.close();return false;" ondrag="return false;" onmousedown="BtnDown();" onmouseup="BtnUp();">
+
+</td>
+</tr>
+
+</table>
+
+<script>
+	var str1=window.self.location.search.toString();
+	var str2=str1.slice(1);
+	var str3=str2.split('+')
+
+if (oDocObj.newpic==1){
+document.forms.f1.prop.disabled=true;}
+else{
+document.forms.f1.address.value=oDocObj.imgsrc;
+//document.forms.f1(0).value=oImg.uniqueID;
+document.forms.f1.img_width.value=oDocObj.imgwidth;
+document.forms.f1.img_height.value=oDocObj.imgheight;
+document.forms.f1.hidden_width.value=oDocObj.imgwidth;
+document.forms.f1.hidden_height.value=oDocObj.imgheight;
+document.forms.f1(3).value=oDocObj.imgheight;
+
+if (oDocObj.tblalign=="left")
+document.forms.f1.elements.r1(1).checked=true
+if (oDocObj.tblalign=="right")
+document.forms.f1.elements.r1(2).checked=true
+if (oDocObj.tblalign=="center")
+document.forms.f1.elements.r1(0).checked=true
+
+}
+	function img() {
+	
+	var width=document.forms.f1(0).value;
+	var height=document.forms.f1(2).value;
+	var altpic=document.forms.f1.altpic.value;
+	var address=document.forms.f1.address.value;
+	if (document.forms.f1.elements.r1(0).checked==true)
+	alignpic=""
+    if (document.forms.f1.elements.r1(1).checked==true)
+	alignpic="left"
+	if (document.forms.f1.elements.r1(2).checked==true)
+	alignpic="right"
+	
+	
+	//if (Doc.forms.f0.saveflag1.checked==true)
+//Doc.forms.f0.elements.saveflag.click();
+if (str2=="") 
+Doc.execCommand('InsertImage',false,address);
+s = "Doc.all.edit.focus();Doc.selection.createRange().item(0).width="+width+";Doc.selection.createRange().item(0).height="+height+";Doc.selection.createRange().item(0).align='"+alignpic+"';Doc.selection.createRange().item(0).border=0;Doc.selection.createRange().item(0).alt='"+altpic+"';";
+	if (width=="")
+	s = "Doc.all.edit.focus();Doc.selection.createRange().item(0).height="+height+";Doc.selection.createRange().item(0).align='"+alignpic+"';Doc.selection.createRange().item(0).border=0;Doc.selection.createRange().item(0).alt='"+altpic+"';";
+	if (height=="")
+	 s = "Doc.all.edit.focus();Doc.selection.createRange().item(0).width="+width+";Doc.selection.createRange().item(0).align='"+alignpic+"';Doc.selection.createRange().item(0).border=0;Doc.selection.createRange().item(0).alt='"+altpic+"';";
+	if (height==""& width=="")
+	 s = "Doc.all.edit.focus();Doc.selection.createRange().item(0).align='"+alignpic+"';Doc.selection.createRange().item(0).border=0;Doc.selection.createRange().item(0).alt='"+altpic+"';";
+
+	window.execScript(s,"JavaScript");
+	
+	window.self.close()
+	 Doc.forms.f0.elements.saveflag.click();
+Doc.all.edit.focus();
+	}
+	function width() {
+	var str1=window.self.location.search.toString();
+	var str2=str1.slice(1);
+	return(str2)
+	}
+	function change(f) {
+	var str1=window.self.location.search.toString();
+	var str2=str1.slice(1);
+	if (document.forms.f1.prop.value=="on"){
+	if (f==2)
+	document.forms.f1(0).value=document.forms.f1(0).value*document.forms.f1(2).value/document.forms.f1(3).value
+	
+	else
+	document.forms.f1(2).value=document.forms.f1(2).value*document.forms.f1(0).value/document.forms.f1(1).value}
+	document.forms.f1(1).value=document.forms.f1(0).value
+	document.forms.f1(3).value=document.forms.f1(2).value
+	}
+	function prop1() {
+	if (document.forms.f1.prop.value=="on"){
+	document.forms.f1.prop.value=""
+	}
+	else
+	document.forms.f1.prop.value="on"
+	}
+	
+	
+	function loadpic()
+{
+		document.forms.f1.address.focus();
+		strPage = "load.html";
+		var strAttr = "status:no;dialogWidth:300px;dialogHeight:300px;help:no;scroll:no;";
+//html = showModalDialog(strPage,'', strAttr);
+//		alert(html);
+//alert(html);
+window.open ("load.html", "spfull","height=500,width=530,status=no,toolbar=no,menubar=no,location=no,resizable=yes,scrollbars=yes");
+//document.focus();
+//if (html) 
+//document.forms.f1.address.value=html;
+}
+
+
+</script>
+
+
+<div id=edit>
+</div>

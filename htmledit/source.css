@@ -1,0 +1,52 @@
+.s_tag {
+	color : #000080;
+	font-family : "Courier New";
+	font-size : 12px;
+}
+.s_img {
+	color : #800080;
+	font-family : "Courier New";
+	font-size : 12px;
+}
+.s_paramvalue {
+	color : #0000FF ;
+	font-family : "Courier New";
+	font-size : 13px;
+}
+.s_htmlcomment {
+	color : #808080 ;
+	font-family : "Courier New";
+	font-size : 12px;
+	font-style : italic;
+}
+.s_A {
+	color : #008000;
+	font-family : "Courier New";
+	font-size : 12px;
+}
+.s_form {
+	color : #FF8000;
+	font-family : "Courier New";
+	font-size : 12px;
+}
+.s_table {
+	color : #008080;
+	font-family : "Courier New";
+	font-size : 12px;
+}
+.s_entity {
+	color : #000000;
+	font-family : "Courier New";
+	font-size : 12px;
+	font-weight : bold;
+}
+.s_styletag {
+	color : #800080;
+	font-family : "Courier New";
+	font-size : 12px;
+}
+.s_styleitem {
+	color : #800080;
+	font-family : "Courier New";
+	font-size : 12px;
+}

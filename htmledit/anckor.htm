@@ -1,0 +1,38 @@
+<HTML>
+   <HEAD>
+
+      <TITLE>Якорь</TITLE>
+	  <link rel=stylesheet type="text/css" href=dialog_style.css>
+   </HEAD>
+   <SCRIPT LANGUAGE="JavaScript">
+   function qw(){
+   
+   if(event.keyCode == 13)saveValues();
+   
+   }
+         function saveValues() {
+            // Построение массива возвращаемых значений.
+            var pretVal="";
+			var retVal="";
+			pretVal =document.myform.text1.value;
+			retVal='<a href="" name='+pretVal+'>'+pretVal+'</a>';
+            window.returnValue = retVal;
+            event.returnValue = false;
+            window.close();
+         }
+      </SCRIPT>
+   <BODY STYLE="text-align:center; font-size:75%;">
+     <FORM NAME="myform" >
+
+         <FIELDSET>
+            
+            <P>Текст якоря:  <INPUT TYPE=text NAME="text1" VALUE="" SIZE=20 onKeyPress="qw();">
+            
+         </FIELDSET>
+      </FORM>
+      <P STYLE="text-align:center">
+      <INPUT TYPE=SUBMIT STYLE="width:5em" ONCLICK="saveValues();"
+         VALUE="OK">
+     
+   </BODY>
+</HTML>

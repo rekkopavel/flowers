@@ -1,0 +1,61 @@
+<html>
+<head>
+<meta name=vs_targetSchema content="HTML 4.0">
+<LINK rel="StyleSheet" type="text/css" href="menu.css">
+<script>
+
+function public_choosesize(size) {
+nCellsCount = document.all['tbl_sizes'].cells.length;
+for(i=0;i<nCellsCount;i++)
+if (document.all['tbl_sizes'].cells[i].num==size)
+document.all['tbl_sizes'].cells[i].className = 'onesize_push';
+else
+document.all['tbl_sizes'].cells[i].className = 'onesize';		
+	}
+	
+		
+function oversize() {
+	var curEl = window.event.srcElement;
+	if (curEl && curEl.tagName == 'FONT' && curEl.parentElement.tagName=='TD' && curEl.parentElement.className!='onesize_push') curEl.parentElement.className='onesize_over'
+}
+function downsize() {
+	var curEl = window.event.srcElement;
+	if (curEl && curEl.tagName == 'FONT' && curEl.parentElement.tagName=='TD') curEl.parentElement.className='onesize_down'
+}
+function outsize() {
+	var curEl = window.event.srcElement;
+	if (curEl && curEl.tagName == 'FONT' && curEl.parentElement.tagName=='TD' && curEl.parentElement.className!='onesize_push') curEl.parentElement.className='onesize'
+}
+
+
+function choosesize() {
+	var curEl = window.event.srcElement;
+	if (curEl && curEl.tagName == 'FONT') {
+		nCellsCount = document.all['tbl_sizes'].cells.length;
+		//for(i=0;i<nCellsCount;i++)
+		//document.all['tbl_fonts'].cells[i].className='onefont';
+		//curEl.className = 'onefont_push';
+		//alert(curEl.parentElement.num);
+		window.external.raiseEvent("onselect", curEl.parentElement.num);
+		
+	}
+	
+}
+</script>
+</head>
+<body topmargin="0" leftmargin="0" style="border: 0; margin: 0;">
+<div id="IDC_FILTER_MENU" style="border:1px solid #D5D2CA; background-color:#F9F8F7;  position:absolute; width:190px;" align="left">
+	
+	<TABLE cellpadding="0" cellspacing="0" border="0" bgcolor="#F9F8F7" width="100%" onmouseover="oversize();" onmouseout="outsize();" onclick="choosesize();" onmousedown="downsize()" onmouseup="" name="tbl_sizes" id="tbl_sizes">
+	<TR><td class="onesize" name="size1" num="1"><font size=1>Размер 1</font></td></TR>
+	<TR><td class="onesize" name="size2" num="2"><font size=2>Размер 2</font></td></TR>
+	<TR><td class="onesize" name="size3" num="3"><font size=3>Размер 3</font></td></TR>
+	<TR><td class="onesize" name="size4" num="4"><font size=4>Размер 4</font></td></TR>
+	<TR><td class="onesize" name="size5" num="5"><font size=5>Размер 5</font></td></TR>
+	<TR><td class="onesize" name="size6" num="6"><font size=6>Размер 6</font></td></TR>
+	<TR><td class="onesize" name="size7" num="7"><font size=7>Размер 7</font></td></TR>
+	</TABLE>
+</div>
+<script>
+
+</script>

@@ -1,0 +1,63 @@
+<html>
+<head>
+<meta name=vs_targetSchema content="HTML 4.0">
+<LINK rel="StyleSheet" type="text/css" href="menu.css">
+<script>
+function public_aaa(param) {      // и метода method1()
+		// some code
+		}
+
+		
+
+function public_choosefont(font) {
+nCellsCount = document.all['tbl_fonts'].cells.length;
+for(i=0;i<nCellsCount;i++)
+if (document.all['tbl_fonts'].cells[i].innerText==font)
+document.all['tbl_fonts'].cells[i].className = 'onefont_push';
+else
+document.all['tbl_fonts'].cells[i].className = 'onefont';		
+	}
+	
+		
+function overfont() {
+	var curEl = window.event.srcElement;
+	if (curEl && curEl.tagName == 'TD' && curEl.className!='onefont_push') curEl.className='onefont_over'
+}
+function downfont() {
+	var curEl = window.event.srcElement;
+	if (curEl && curEl.tagName == 'TD') curEl.className='onefont_down'
+}
+function outfont() {
+	var curEl = window.event.srcElement;
+	if (curEl && curEl.tagName == 'TD' && curEl.className!='onefont_push') curEl.className='onefont'
+}
+
+
+function choosefont() {
+	var curEl = window.event.srcElement;
+	if (curEl && curEl.tagName == 'TD') {
+		nCellsCount = document.all['tbl_fonts'].cells.length;
+		//for(i=0;i<nCellsCount;i++)
+		//document.all['tbl_fonts'].cells[i].className='onefont';
+		//curEl.className = 'onefont_push';
+		window.external.raiseEvent("onselect", curEl.innerText);
+		
+	}
+	
+}
+</script>
+</head>
+<body topmargin="0" leftmargin="0" style="border: 0; margin: 0;">
+<div id="IDC_FILTER_MENU" style="border:1px solid #D5D2CA; background-color:#F9F8F7;  position:absolute; width:150px;" align="left">
+									<TABLE cellpadding="0" cellspacing="0" border="0" bgcolor="#F9F8F7" width="100%" onmouseover="overfont();" onmouseout="outfont();" onclick="choosefont();" onmousedown="downfont()" name="tbl_fonts" id="tbl_fonts">
+									<TR><td style="font-family:Arial" class="onefont" name="Arial">Arial</td></TR>
+									<TR><td style="font-family:Courier New"  class="onefont" name="Courier New">Courier New</td></TR>
+									<TR><td style="font-family:Tahoma"  class="onefont" name="Tahoma">Tahoma</td></TR>
+									<TR><td style="font-family:Times New Roman" class="onefont" name="Times New Roma">Times New Roman</td></TR>
+									<TR><td style="font-family:Verdana" class="onefont" name="Verdana">Verdana</td></TR>
+									<TR><td style="font-family:Wingdings" class="onefont" name="Wingdings">Wingdings</td></TR>
+									</TABLE>
+</div>
+<script>
+
+</script>

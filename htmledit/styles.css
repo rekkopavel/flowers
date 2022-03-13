@@ -1,0 +1,37 @@
+.general_tg {
+	color : Navy;
+	font-family : "Courier New";
+	font-size : 12px;
+}
+.img_tg {
+	color : Fuchsia;
+	font-family : "Courier New";
+	font-size : 12px;
+}
+.a_tg {
+	color : Green;
+	font-family : "Courier New";
+	font-size : 12px;
+}
+.table_tg {
+	color : Teal;
+	font-family : "Courier New";
+	font-size : 12px;
+}
+.form_tg {
+	color : Orange;
+	font-family : "Courier New";
+	font-size : 12px;
+}
+.script_tg {
+	color : Maroon;
+	font-family : "Courier New";
+	font-size : 12px;
+}
+.comments_tg {
+	color : Gray;
+	font-family : "Courier New";
+	font-size : 12px;
+	font-style : italic;
+}
+

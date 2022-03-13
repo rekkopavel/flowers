@@ -1,0 +1,27 @@
+
+<HTML>
+<HEAD>
+<TITLE>Форма</TITLE>
+<META http-equiv="Content-Type" content="text/html; charset=windows-1251"><LINK rel="StyleSheet" type="text/css" href="menu.css">
+<SCRIPT language="JavaScript" src="general.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="functions.js"></SCRIPT>
+<HTML>
+<HEAD>
+<SCRIPT>var DocObjForm = new Object();
+</SCRIPT>
+</HEAD>
+<BODY>
+	<TABLE>
+		<TR ondragstart="handleDrag(0)">
+			<TD class="menu">
+				<FORM name="f1" method="POST">
+					<TEXTAREA cols="50" rows="30" name="text"></TEXTAREA><IMG src="images/send.gif" alt="Отправить" unselectable="on" onClick="l=document.location.href.lastIndexOf('/');url=document.location.href.substr(0,l+1);eval('reg=/'+url.replace(/\//ig,'\\/')+'/ig');if(k=sendform('f1','text',document.all.css.value))document.forms.f1.elements('text').value=k.substr(2).replace(reg,'');" onMouseOver="this.className = 'hover';" onMouseOut="this.className = '';">
+					<br>Таблица стилей:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<input type="text" size="50" id="css" name="css">
+			</TD>
+		</TR>
+	</TABLE>
+</FORM>
+</BODY>
+</HTML>
+<SCRIPT></SCRIPT>

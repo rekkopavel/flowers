@@ -1,0 +1,50 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+	<title>Untitled</title>
+<LINK rel="StyleSheet" type="text/css" href="menu.css">
+</head>
+<body topmargin="0" leftmargin="0" style="border: 0; margin: 0;">
+<script language="JavaScript">
+
+function overchar() {
+	var curEl = window.event.srcElement;
+	if (curEl && curEl.tagName == "TD") curEl.className='onechar_over'
+}
+function outchar() {
+	var curEl = window.event.srcElement;
+	if (curEl && curEl.tagName == "TD" && curEl.parentElement) curEl.className='onechar'
+}
+
+function choose() {
+	var curEl = window.event.srcElement;
+	if (curEl && curEl.tagName == "TD") {
+		curEl.className='onechar_push';
+		window.external.raiseEvent("onfocus", curEl.innerText);
+	}
+}
+
+function showchars(){
+var chars = ["!","&quot;","#","$","%","&","'","(",")","*","+","-",".","/","0","1","2","3","4","5","6","7","8","9",":",";","&lt;","=","&gt;","?","@","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","[","]","^","_","`","a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","{","|","}","~","&euro;","ƒ","„","…","†","‡","ˆ","\‰","Š","‹","Œ","&lsquo;","&rsquo;","&rsquo;","&ldquo;","&rdquo;","•","&ndash;","&mdash;","˜","™","š","›","œ","Ÿ","&iexcl;","&cent;","&pound;","&pound;","&curren;","&yen;","&brvbar;","&sect;","&uml;","&copy;","&ordf;","&laquo;","&not;","­","&reg;","&macr;","&deg;","&plusmn;","&sup2;","&sup3;","&acute;","&micro;","&para;","&middot;","&cedil;","&sup1;","&ordm;","&raquo;","&frac14;","&frac12;","&frac34;","&iquest;","&Agrave;","&Aacute;","&Acirc;","&Atilde;","&Auml;","&Aring;","&AElig;","&Ccedil;","&Egrave;","&Eacute;","&Ecirc;","&Euml;","&Igrave;","&Iacute;","&Icirc;","&Iuml;","&ETH;","&Ntilde;","&Ograve;","&Oacute;","&Ocirc;","&Otilde;","&Ouml;","&times;","&Oslash;","&Ugrave;","&Uacute;","&Ucirc;","&Uuml;","&Yacute;","&THORN;","&szlig;","&agrave;","&aacute;","&acirc;","&atilde;","&auml;","&aring;","&aelig;","&ccedil;","&egrave;","&eacute;","&ecirc;","&euml;","&igrave;","&iacute;","&icirc;","&iuml;","&eth;","&ntilde;","&ograve;","&oacute;","&ocirc;","&otilde;","&ouml;","&divide;","&oslash;","&ugrave;","&uacute;","&ucirc;","&uuml;","&uuml;","&yacute;","&thorn;","&yuml;","&#216;"]
+//alert(chars.length);
+txt='<TABLE border="0" cellspacing="1" cellpadding="0" onmouseover="overchar();" bgcolor="#F9F8F7" onmouseout="outchar();" onclick="choose();"  >';
+var ch
+for(i=1;i<225;i+=15){
+txt=txt+"<tr>"
+	for(j=i;j<i+15;j++){
+	if (j>214) ch="&nbsp;"
+	else ch=chars[j-1]
+	txt=txt+'<td class="onechar">'+ch+'</td>'
+	}
+txt=txt+"</tr>"
+}
+txt=txt+"</table>"
+//alert(txt);
+document.write(txt);
+}
+showchars()
+</script>
+
+</body>
+</html>

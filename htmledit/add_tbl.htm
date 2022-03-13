@@ -1,0 +1,157 @@
+
+<!doctype html public "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>Редактор:работа с таблицей</title>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1251">
+<link rel=stylesheet type="text/css" href=dialog_style.css>
+<script language="JavaScript" src="functions.js"></script>
+<script>
+var Doc = window.dialogArguments
+</script>
+<form name=f1>
+<!--<body topmargin="0" leftmargin="0" style="border: 0; margin: 0;" scroll="no">-->
+<table class="dlg" cellpadding="0" cellspacing="2" width="100%" height="100%">
+<tr><td colspan="5"><table width="100%"><tr><td>Общие</td><td valign="middle" width="90%"><hr width="100%"></td></tr></table></td></tr>
+<tr>
+ <td width="10">&nbsp;</td>
+ <td width="70">Количество строк:</td><td valign="middle"><input type="text" name="tab" value="2" size="5"></td>
+ <td width="70"><!--Cell Padding:</td><td valign="middle"><input type="text" name="cellPadding" value="0" size="5">--></td>
+</tr>
+<tr>
+ <td>&nbsp;</td>
+ <td>Количество столбцов:</td><td valign="middle"><input type="text" name="tab1" value="2" size="5"></td>
+ <td><!--Cell Spacing:</td><td valign="middle"><input type="text" name="cellSpacing" value="0" size="5">--></td>
+</tr>
+<tr>
+ <td>&nbsp;</td>
+ <td>Ширина:</td><td valign="middle"><input type="text" name=heightf value="20" size="5"></td>
+</tr>
+<tr>
+ <td>&nbsp;</td>
+ <td>Высота:</td><td valign="middle"><input type="text" name=widthf value="100" size="5"></td>
+</tr>
+<tr><td colspan="5"><table width="100%"><tr><td>Границы</td><td valign="middle" width="90%"><hr width="100%"></td></tr></table></td></tr>
+<tr>
+ <td>&nbsp;</td>
+ <td>Толщина:</td><td valign="middle"><select name=tab2 onchange="document.all.r1(0).focus();">
+                                <option value=0>0</option>
+                                <option value=1 selected>1</option>
+                                <option value=2>2</option>
+                                <option value=3>3</option>
+                                <option value=4>4</option>
+                                <option value=5>5</option>
+                                <option value=6>6</option>
+                                <option value=7>7</option>
+                                <option value=8>8</option>
+                                <option value=9>9</option>
+                                <option value=10>10</option>
+                                <option value=11>11</option>
+                                <option value=12>12</option>
+                                <option value=13>13</option>
+                                <option value=14>14</option>
+                                <option value=15>15</option>
+                                <option value=16>16</option>
+                                <option value=17>17</option>
+                                <option value=18>18</option>
+                                <option value=19>19</option>
+                                <option value=20>20</option>
+                        </select></td>
+ <td>Цвет:</td><td valign="middle"><select name=color onchange="document.all.r1(0).focus();">
+                                <option value=red style="font-syze:large; background-color:red">&nbsp;&nbsp;</option>
+                                <option value=orange style="font-syze:large; background-color:orange;">&nbsp;&nbsp;</option>
+                                <option value=yellow style="background-color:yellow; font-syze:large;">&nbsp;&nbsp;</option>
+                                <option value=green style="background-color:green; font-syze:large;">&nbsp;&nbsp;</option>
+                                <option value=blue style="background-color:blue; font-syze:large;">&nbsp;&nbsp;</option>
+                                <option value=darkblue style="background-color:darkblue; font-syze:large;">&nbsp;&nbsp;</option>
+                                <option value=violet style="background-color:violet; font-syze:large;">&nbsp;&nbsp;</option>
+                                <option value=black style="background-color:black; font-syze:large;">&nbsp;&nbsp;</option>
+                                <option value=white style="background-color:white; font-syze:large;">&nbsp;&nbsp;</option>
+                        </select></td>
+</tr>
+<tr><td colspan="5"><table width="100%"><tr><td>Выравнивание</td><td valign="middle" width="90%"><hr width="100%"></td></tr></table></td></tr>
+<tr>
+        <td>&nbsp;</td>
+        <td colspan="4">
+                        <table>
+                                <tr>
+                                        <td valign=top align=center><nobr>По левому</nobr> краю&nbsp;
+                                        </td>
+                                        <td valign=top align=center><nobr>По правому</nobr> краю&nbsp;
+                                        </td>
+                                        <td valign=top align=center><nobr>По центру</nobr>&nbsp;
+                                        </td>
+                                </tr>
+                                <tr>
+                                        <td align=center>
+                                                <input type=radio name=r1 value=1 checked>
+                                        </td>
+                                        <td align=center>
+                                                <input type=radio name=r1 value=1>
+                                        </td>
+                                        <td align=center>
+                                                <input type=radio name=r1 value=3>
+                                        </td>
+                                </tr>
+                        </table>
+        </td>
+</tr>
+<!--<tr><td colspan="5"><table width="100%"><tr><td>Background</td><td valign="middle" width="90%"><hr width="100%"></td></tr></table></td></tr>
+<tr>
+ <td>&nbsp;</td>
+ <td>Color:</td><td valign="middle"><input type="text" name="backgroundColor" value="" size="15"></td>
+</tr>
+<tr><td colspan="5"><table width="100%"><tr><td valign="middle" width="100%" colspan="2"><hr width="100%"></td></tr></table></td></tr>
+-->
+<tr>
+ <td>&nbsp;</td>
+ <td><td colspan="4" align="right"><input class="button" type="button" id="ok" onclick="tb()" alt="Отправить" unselectable=on class=btnbig ondrag="return false;" onmousedown="BtnDown();" onmouseup="BtnUp();" value="OK">
+<input class="button" type="button" value="Отмена" alt="Отмена" unselectable=on class=btnbig1 onclick="Doc.all.edit.focus();window.self.close();" ondrag="return false;" onmousedown="BtnDown();" onmouseup="BtnUp();"></td>
+</tr>
+</table>
+</form>
+
+
+<script language="JavaScript">
+
+        window.focus();
+        var str1=window.self.location.search.toString();
+var curs=eval(str1.slice(1));
+function tb () {
+var nametb=Math.random().toString();
+        var nametb1=nametb.replace(".","");
+        var str='vas.htm?'+document.all.f1(0).value+'+'+document.all.f1(1).value+'+'+curs;
+        var bord=document.all.f1(4).value;
+        
+        var bordcolor=document.all.f1(5).value;
+        var width=document.all.f1(2).value;
+        var height=document.all.f1(3).value;
+        if (document.all.r1(0).checked==true)
+        alignt="left"
+        if (document.all.r1(1).checked==true)
+        alignt="right"
+        if (document.all.r1(2).checked==true)
+        alignt="center"
+        if (width=="")
+        width="20";
+        if (height=="")
+        height="20";
+        var s = "<table   cellpadding=0 cellspacing=0 border="+bord+" borderColor=" +bordcolor+" width="+width+" height="+height+" align="+alignt+">";
+        var col=document.all.f1(0).value
+        var row=document.all.f1(1).value
+                document.write(s);
+        for(i=1;i<=col;i++){
+        s += "<tr>";
+        for(j=1;j<=row;j++){
+        s += "<td>&nbsp;&nbsp;</td>";
+        }
+        s += "</tr>";
+        }
+        s += "</table>";
+
+window.returnValue = s;
+window.self.close();
+
+         }
+</script>
+  // style="+styl+"

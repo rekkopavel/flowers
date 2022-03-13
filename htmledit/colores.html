@@ -1,0 +1,139 @@
+<html>
+<head>
+<meta name=vs_targetSchema content="HTML 4.0">
+<LINK rel="StyleSheet" type="text/css" href="menu.css">
+</head>
+<body topmargin="0" leftmargin="0" style="border: 0; margin: 0;">
+<script language="JavaScript">
+
+function overcolor() {
+	var curEl = window.event.srcElement;
+	if (curEl && curEl.tagName == "IMG" && curEl.parentElement && curEl.parentElement.tagName=='TD') curEl.parentElement.className='onecolor_over'
+}
+function outcolor() {
+	var curEl = window.event.srcElement;
+	if (curEl && curEl.tagName == "IMG" && curEl.parentElement && curEl.parentElement.tagName=='TD') curEl.parentElement.className='onecolor'
+}
+
+function choose() {
+	var el = window.event.srcElement;
+	if (el && el.tagName == "IMG") {
+		window.external.raiseEvent("onselect", el.style.background);
+	}
+	if (el && el.tagName == "TD") {
+		window.external.raiseEvent("onselect", null);
+	}
+}
+
+</script>
+
+<TABLE border="0" cellspacing="3" cellpadding="0" onmouseover="overcolor();" bgcolor="#F9F8F7" onmouseout="outcolor();" onclick="choose();">
+		<TR>
+			<TD class="onecolor"><img src="images/0.gif" style='background:white;'></TD>
+			<TD class="onecolor"><img src="images/0.gif" style='background:#F3F3F3;'></TD>
+			<TD class="onecolor"><img src="images/0.gif" style='background:#E6E6E6;'></TD>
+			<TD class="onecolor"><img src="images/0.gif" style='background:#E6E6E6;'></TD>
+			<TD class="onecolor"><img src="images/0.gif" style='background:#E6E6E6;'></TD>
+			<TD class="onecolor"><img src="images/0.gif" style='background:#CCCCCC;'></TD>
+			<TD class="onecolor"><img src="images/0.gif" style='background:silver;'></TD>
+			<TD class="onecolor"><img src="images/0.gif" style='background:#B3B3B3;'></TD>
+		</TR>
+		<TR>
+			<TD class="onecolor"><img src="images/0.gif"  style='background:#A6A6A6;'></TD>
+			<TD class="onecolor"><img src="images/0.gif"  style='background:#A0A0A0;'></TD>
+			<TD class="onecolor"><img src="images/0.gif"  style='background:#999999;'></TD>
+			<TD class="onecolor"><img src="images/0.gif"  style='background:#8C8C8C;'></TD>
+			<TD class="onecolor"><img src="images/0.gif"  style='background:gray;'></TD>
+			<TD class="onecolor"><img src="images/0.gif"  style='background:#737373;'></TD>
+			<TD class="onecolor"><img src="images/0.gif"  style='background:#666666;'></TD>
+			<TD class="onecolor"><img src="images/0.gif"  style='background:#606060;'></TD>
+		</TR>
+		<TR>
+			<TD class="onecolor"><img src="images/0.gif"  style='background:#595959;'></TD>
+			<TD class="onecolor"><img src="images/0.gif"  style='background:#4C4C4C;'></TD>
+			<TD class="onecolor"><img src="images/0.gif"  style='background:#404040;'></TD>
+			<TD class="onecolor"><img src="images/0.gif"  style='background:#333333;'></TD>
+			<TD class="onecolor"><img src="images/0.gif"  style='background:#262626;'></TD>
+			<TD class="onecolor"><img src="images/0.gif"  style='background:#202020;'></TD>
+			<TD class="onecolor"><img src="images/0.gif"  style='background:#191919;'></TD>
+			<TD class="onecolor"><img src="images/0.gif"  style='background:#0C0C0C;'></TD>
+		</TR>
+		<TR>
+			<TD class="onecolor"><img src="images/0.gif"  style='background:black;'></TD>
+			<TD class="onecolor"><img src="images/0.gif"  style='background:#993300;'></TD>
+			<TD class="onecolor"><img src="images/0.gif" style='background:#333300;'></TD>
+			<TD class="onecolor"><img src="images/0.gif"  style='background:#003300;'></TD>
+			<TD class="onecolor"><img src="images/0.gif"  style='background:#003366;'></TD>
+			<TD class="onecolor"><img src="images/0.gif"  style='background:navy;'></TD>
+			<TD class="onecolor"><img src="images/0.gif" style='background:#333399;'></TD>
+			<TD class="onecolor"><img src="images/0.gif"  style='background:#333333;'></TD>
+		</TR>
+		<TR>
+			<TD class="onecolor"><img src="images/0.gif"  style='background:maroon;'></TD>
+			<TD class="onecolor"><img src="images/0.gif"  style='background:#FF6600;'></TD>
+			<TD class="onecolor"><img src="images/0.gif"  style='background:olive;'></TD>
+			<TD class="onecolor"><img src="images/0.gif"  style='background:green;'></TD>
+			<TD class="onecolor"><img src="images/0.gif"  style='background:teal;'></TD>
+			<TD class="onecolor"><img src="images/0.gif"  style='background:blue;'></TD>
+			<TD class="onecolor"><img src="images/0.gif"  style='background:#666699;'></TD>
+			<TD class="onecolor"><img src="images/0.gif"  style='background:gray;'></TD>
+		</TR>
+		<TR>
+			<TD class="onecolor"><img src="images/0.gif"  style='background:red;'></TD>
+			<TD class="onecolor"><img src="images/0.gif"  style='background:#FF9900;'></TD>
+			<TD class="onecolor"><img src="images/0.gif"  style='background:#99CC00;'></TD>
+			<TD class="onecolor"><img src="images/0.gif"  style='background:#339966;'></TD>
+			<TD class="onecolor"><img src="images/0.gif"  style='background:#33CCCC;'></TD>
+			<TD class="onecolor"><img src="images/0.gif"  style='background:#3366FF;'></TD>
+			<TD class="onecolor"><img src="images/0.gif"  style='background:purple;'></TD>
+			<TD class="onecolor"><img src="images/0.gif"  style='background:#999999;'></TD>
+		</TR>
+		<TR>
+			<TD class="onecolor"><img src="images/0.gif"  style='background:fuchsia;'></TD>
+			<TD class="onecolor"><img src="images/0.gif"  style='background:#FFCC00;'></TD>
+			<TD class="onecolor"><img src="images/0.gif"  style='background:yellow;'></TD>
+			<TD class="onecolor"><img src="images/0.gif"  style='background:lime;'></TD>
+			<TD class="onecolor"><img src="images/0.gif"  style='background:aqua;'></TD>
+			<TD class="onecolor"><img src="images/0.gif"  style='background:#00CCFF;'></TD>
+			<TD class="onecolor"><img src="images/0.gif"  style='background:#993366;'></TD>
+			<TD class="onecolor"><img src="images/0.gif"  style='background:silver;'></TD>
+		</TR>
+		<TR>
+			<TD class="onecolor"><img src="images/0.gif"  style='background:#FF99CC;'></TD>
+			<TD class="onecolor"><img src="images/0.gif"  style='background:#FFCC99;'></TD>
+			<TD class="onecolor"><img src="images/0.gif"  style='background:#FFFF99;'></TD>
+			<TD class="onecolor"><img src="images/0.gif"  style='background:#CCFFCC;'></TD>
+			<TD class="onecolor"><img src="images/0.gif"  style='background:#CCFFFF;'></TD>
+			<TD class="onecolor"><img src="images/0.gif"  style='background:#99CCFF;'></TD>
+			<TD class="onecolor"><img src="images/0.gif"  style='background:#CC99FF;'></TD>
+			<TD class="onecolor"><img src="images/0.gif"  style='background:white;'></TD>
+		</TR>
+	</TABLE>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html public "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<TITLE>Редактор:работа с документом</TITLE>
+<META http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<SCRIPT language="JavaScript" src="general_mail.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="table.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="img.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="text.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="format_paste.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="functions.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="editor.js"></SCRIPT>
+<LINK rel="StyleSheet" type="text/css" href="">
+<LINK rel="StyleSheet" type="text/css" href="menu.css">
+<LINK rel="StyleSheet" type="text/css" href="dialog_style.css">
+<LINK rel="StyleSheet" type="text/css" href="source.css">
+<script>var DocObj = new Object();
+DocObj.docname = window.document;
+
+if (screen) 
+{
+	window.dialogWidth=screen.width;
+	window.dialogHeight=(screen.height-25)+'px';
+	window.dialogTop=0;
+}
+
+var ie6 = navigator.appVersion.indexOf("MSIE 6.")>0 || navigator.appVersion.indexOf("MSIE 5.5")>0;
+var z=1;
+var B = new Array();
+var kol=0
+var paste=0
+var cut=0
+var drop=0
+</script>
+
+</HEAD>
+<BODY style="BORDER-RIGHT: 1px inset; BORDER-TOP: 1px inset; BORDER-LEFT: 1px inset; BORDER-BOTTOM: 1px inset" leftmargin="0" topmargin="0" scroll="no" unselectable="on" onFocus="foc();" onKeyUp="return false;">
+	<DIV>
+		<IFRAME src="f1.htm" width="1" height="1" name="frm" frameborder="0" bgcolor="#e8e8e8"></IFRAME>
+		<IFRAME src="f2.htm" width="1" height="1" name="frm1" frameborder="0" bgcolor="#e8e8e8"></IFRAME>
+	</DIV>
+	<TABLE unselectable="on" height="100%" cellspacing="0" cellpadding="0" width="100%" bgcolor="buttonface" border="0" onFocus="foc();" id="tabl">
+		<FORM name="f0">
+			<TR ondragstart="handleDrag(0)" onMouseUp="press(false)" onMouseDown="press(true)" onMouseOver="hover(true)" onMouseOut="hover(false)">
+				<TD class="menu"><NOBR><SPAN class="toolbar"><IMG class="spacer" src="spacer.gif" width="2" unselectable="on" title="menu"><IMG id="btnCut" src="images/icon_cut.gif" align="absMiddle" width="20" height="20" alt="Вырезать (Ctrl+X)" onClick="if (document.forms.f0.saveflag1.checked==true)save();execCommand('cut');" unselectable="on" service="menu"><IMG id="btnCopy" src="images/icon_copy.gif" align="absMiddle" width="20" height="20" alt="Копировать (Ctrl+C)" onClick="Exec('copy');" iscontenteditable="false" unselectable="on" service="menu"><IMG id="btnPaste" src="images/icon_paste.gif" align="absMiddle" width="20" height="20" alt="Вставить (Ctrl+V)" onClick="if (document.forms.f0.saveflag1.checked==true)save();execCommand('paste');" unselectable="on" service="menu"><IMG class="spacer" src="spacer.gif" width="2" unselectable="on" service="menu"><SPAN class="sep"></SPAN><IMG id="btnLink" src="images/icon_ins_link.gif" align="absMiddle" width="20" height="20" alt="Гиперссылка" onClick="Exec('CreateLink');" unselectable="on" service="menu"><IMG class="spacer" src="spacer.gif" width="2" unselectable="on" service="menu"><SPAN class="sep"></SPAN><IMG id="btnTable" src="images/icon_ins_table.gif" alt="Вставить/редактировать таблицу" unselectable="on" onClick="addtb();" unselectable="on" service="menu"><IMG id="btnRule" alt="Insert Horizontal Line" src="images/icon_rule.gif" align="absMiddle" width="20" height="20" onClick="Exec('InsertHorizontalRule')" unselectable="on" service="menu"><IMG id="btnChar" alt="Insert special character" src="images/icon_ins_char.gif" align="absMiddle" width="20" height="20" border="0" onClick="inschar();" unselectable="on" service="menu"></SPAN></NOBR>
+				</TD>
+			</TR>
+			<TR ondragstart="handleDrag(0)" onMouseUp="press(false)" onMouseDown="press(true)" onMouseOver="hover(true)" onMouseOut="hover(false)">
+				<TD class="menu"><NOBR><SPAN class="toolbar"><IMG class="spacer" src="spacer.gif" width="2" unselectable="on" service="menu"><SPAN class="startmenu"></SPAN><IMG id="btnBold" alt="Bold" src="images/icon_bold.gif" align="absMiddle" width="20" height="20" alt="Жирный (Ctrl+B)" unselectable="on" onClick="Exec('Bold');div_reset(this.name);" service="menu"><IMG id="btnItalic" alt="Italic" src="images/icon_italic.gif" align="absMiddle" width="20" height="20" alt="Курсив (Ctrl+I)" unselectable="on" onClick="Exec('Italic');div_reset(this.name);" service="menu"><IMG id="btnUnderline" alt="Underline" src="images/icon_underline.gif" align="absMiddle" width="20" height="20" alt="Подчеркивание (Ctrl+U)" unselectable="on" onClick="Exec('Underline');div_reset(this.name);" service="menu"><IMG id="btnStrikethrough" alt="Strikethrough" src="images/icon_strikethrough.gif" align="absMiddle" width="20" height="20" onClick="Exec('strikethrough');div_reset(this.name);" unselectable="on" service="menu"><IMG class="spacer" src="spacer.gif" width="2" unselectable="on"><SPAN class="sep" service="menu"></SPAN><IMG id="btnLeftJustify" src="images/icon_left.gif" align="absMiddle" width="20" height="20" alt="Выравнивание по левому краю" unselectable="on" onClick="Exec('JustifyLeft');div_reset(this.name);" service="menu"><IMG id="btnCenter" src="images/icon_center.gif" align="absMiddle" width="20" height="20" alt="Выравнивание по центру" unselectable="on" onClick="Exec('JustifyCenter');div_reset(this.name);" service="menu"><IMG id="btnRightJustify" src="images/icon_right.gif" align="absMiddle" width="20" height="20" alt="Выравнивание по правому краю" unselectable="on" onClick="Exec('JustifyRight');div_reset(this.name);" service="menu"><IMG id="btnFullJustify" src="images/icon_block.gif" align="absMiddle" width="20" height="20" alt="Выравнивание по ширине" unselectable="on" onClick="Exec('JustifyFull');div_reset(this.name);" service="menu"><IMG class="spacer" src="spacer.gif" width="2" unselectable="on"><SPAN class="sep"></SPAN><IMG id="btnNumList" src="images/icon_numlist.gif" align="absMiddle" width="20" height="20" alt="Нумерация" unselectable="on" onClick="Exec('InsertOrderedList');div_reset(this.name);" service="menu"><IMG id="btnBulList" src="images/icon_bullist.gif" align="absMiddle" width="20" height="20" alt="Маркеры" unselectable="on" onClick="Exec('InsertUnorderedList');div_reset(this.name);" service="menu"><IMG class="spacer" src="spacer.gif" width="2" unselectable="on"><SPAN class="sep"></SPAN><IMG id="btnOutdent" src="images/icon_outdent.gif" align="absMiddle" width="20" height="20" alt="Нумерация" unselectable="on" onClick="Exec('Outdent');" service="menu"><IMG id="btnIndent" src="images/icon_indent.gif" align="absMiddle" width="20" height="20" alt="Нумерация" unselectable="on" onClick="Exec('Indent');" service="menu"><SPAN id="featureHistory"><IMG class="spacer" src="spacer.gif" width="2" unselectable="on" service="menu"><SPAN class="sep"></SPAN><IMG id="btnPrev" src="images/icon_undo.gif" align="absMiddle" width="20" height="20" alt="Отменить (Ctrl+Z)" unselectable="on" onClick="myundo();" service="menu"><IMG id="btnNext" src="images/icon_redo.gif" align="absMiddle" width="20" height="20" alt="Вернуть (Ctrl+Shift+Z)" unselectable="on" onClick="myredo();" service="menu"></SPAN></SPAN></NOBR>
+				</TD>
+			</TR>
+			<TR id="featureStyleBar">
+				<TD class="menu"><NOBR><SPAN class="toolbar"><IMG class="spacer" src="spacer.gif" width="2" unselectable="on" service="menu"><SPAN class="startmenu"></SPAN>&nbsp;<SPAN id="featureFont"><SPAN class="label">Font</SPAN>
+					<SELECT hidefocus class="button" id="ctlFont" onChange="sel(this)" style="width:118px;">
+						<OPTION selected></OPTION>
+						<OPTION value="Arial">Arial</OPTION>
+						<OPTION value="Courier New">Courier New</OPTION>
+						<OPTION value="Tahoma">Tahoma</OPTION>
+						<OPTION value="Times New Roman">Times New Roman</OPTION>
+						<OPTION value="Verdana">Verdana</OPTION>
+						<OPTION value="Wingdings">Wingdings</OPTION>
+					</SELECT></SPAN><SPAN id="featureFontSize"><SPAN class="sep"></SPAN><SPAN class="label">Size</SPAN>
+					<SELECT hidefocus class="button" id="ctlSize" onChange="sel(this)">
+						<OPTION selected></OPTION>
+						<OPTION value="1">xx-small</OPTION>
+						<OPTION value="2">x-small</OPTION>
+						<OPTION value="3">small</OPTION>
+						<OPTION value="4">medium</OPTION>
+						<OPTION value="5">large</OPTION>
+						<OPTION value="6">x-large</OPTION>
+						<OPTION value="7">xx-large</OPTION>
+					</SELECT></SPAN><SPAN id="featureColour"><SPAN class="sep"></SPAN><IMG id="btnText" alt="Text Color" src="images/icon_color_text.gif" align="absMiddle" width="36" height="20" onClick="if (this.className=='down')document.all['color'].style.display = 'none',this.className=''; else pickColor('ForeColor');" unselectable="on" onMouseOver="if(this.className!='down'&&this.className!='disabled')this.className='hover';" onMouseOut="if (this.className=='hover')this.className='';" service="menu"><IMG id="btnFill" alt="Background Color" src="images/icon_color_fill.gif" align="absMiddle" width="36" height="20" onClick="if (this.className=='down')document.all['color'].style.display = 'none',this.className=''; else pickColor('BackColor');" unselectable="on" onMouseOver="if(this.className!='down'&&this.className!='disabled')this.className='hover';" onMouseOut="if (this.className=='hover')this.className='';" service="menu"></SPAN><SPAN id="featureSource"></SPAN></SPAN></NOBR>
+				</TD>
+			</TR>
+			<TR id="menuBottom">
+				<TD class="spacer" height="2"><IMG height="1" src="spacer.gif" align="left">
+				</TD>
+			</TR>
+			<TR>
+				<TD class="textedit" valign="top" height="100%">					
+					<INPUT type=checkbox name=saveflag1 style="visibility : hidden" onchange="paste=0;cut=0;drop=0;">
+					<DIV id="edit" contenteditable="true" onbeforecut="if (document.forms.f0.saveflag1.checked==true)save();" oncut="document.forms.f0.saveflag1.checked=true;cut=1" onbeforepaste="if (document.forms.f0.saveflag1.checked==true)save();" onpaste="document.forms.f0.saveflag1.checked=true;paste=1" style="background-color:white;width:100%;height:100%;border-width:1; overflow-y:auto;overflow-x:auto; border-width:0; scrollbar-face-color :#C6C6C6; scrollbar-darkshadow-color :Gray;scrollbar-highlight-color: #efefef" onKeyDown="key();GetCurElement('','','edit_onclick');" onKeyPress="if (cut==1||paste==1||drop==1){save();cut=0;paste=0;drop=0;};flag();" onKeyUp="div_reset();return false;" ondrop="save();document.forms.f0.saveflag1.checked=true;drop=1" height="100%" width="100%" onClick="div_reset();GetCurElement('','','edit_onclick');" style="padding:6;">
+					</DIV>					
+					<INPUT type=checkbox name=saveflag onclick="saveflagf();" style="visibility : hidden">
+				</TD>
+			</TR>
+	</TABLE><OBJECT id="color" data="colores.html" type="text/x-scriptlet" viewastext></OBJECT>
+<SCRIPT for="color" event="onscriptletevent(name, data)">setColor(name, data);
+</SCRIPT>
+<SCRIPT>
+
+document.all.edit.focus();
+if(ie6)
+{
+		document.all.edit.focus();
+}
+else
+	alert("Для работы в редакторе Вам необходим браузер Internet Explorer версии 5.5 и выше")
+if(document.all.edit.innerHTML==null)
+	B[0]=""
+else
+	B[0]=document.all.edit.innerHTML;
+</SCRIPT>

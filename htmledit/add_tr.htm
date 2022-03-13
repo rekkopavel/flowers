@@ -1,0 +1,138 @@
+
+<!doctype html public "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>Редактор:работа с таблицей</title>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1251"><link rel=stylesheet type="text/css" href=style.css>
+<script language="JavaScript" src="functions.js"></script>
+<script>window.focus();
+	var str1=window.self.location.search.toString();
+	var str2=str1.slice(1);
+if (window.opener.document.forms.f0.saveflag1.checked==true)
+window.opener.document.forms.f0.elements.saveflag.click();
+		function addtr (n) {
+	if(window.opener.document.selection.type=="Control") {
+		if(window.opener.document.selection.createRange().item(0).tagName=="TABLE") {
+			var oTable = window.opener.document.selection.createRange().item(0);
+			var nRowCount = oTable.rows.length;
+			var nColsCount = oTable.rows(0).cells.length;
+			if (n>nRowCount)
+			alert("Строка с таким номером отсутствует")
+			else
+			{
+			var oTr = window.opener.document.selection.createRange().item(0).insertRow(n);
+	if (n==-1)
+	n=(nRowCount);
+			for(var i=0; i<nColsCount; i++) 
+				{oTr.insertCell();
+
+		window.opener.document.selection.createRange().item(0).rows[n].cells[i].innerHTML="&nbsp;&nbsp;";}
+		 	}
+			}
+		}
+	}
+	function addtd (n) {
+	if(window.opener.document.selection.type=="Control") {
+		if(window.opener.document.selection.createRange().item(0).tagName=="TABLE") {
+			var oTable = window.opener.document.selection.createRange().item(0);
+			var nRowCount = oTable.rows.length;
+			var nColsCount = oTable.rows(0).cells.length;
+			if (n>nColsCount)
+			alert("Столбец с таким номером отсутствует")
+			else
+			{
+			if (n==-1)
+			n=(nColsCount);
+			for(var i=0; i<nRowCount; i++){ 
+				oTable.rows(i).insertCell(n);
+window.opener.document.selection.createRange().item(0).rows[i].cells[n].innerHTML="&nbsp;&nbsp;";
+		}
+		}
+		}
+	}
+}
+	function add(){
+	if (str2=="tr"){
+if (document.forms.f1(0).checked==true)
+addtr(0)
+if (document.forms.f1(1).checked==true)
+addtr(-1)
+if (document.forms.f1(2).checked==true)
+		{
+val=document.forms.f1(3).value;
+if ((isNaN(val)==true)||(val==null)||(val=="") ||(val ==" ")||(val=="  ")||(val=="   "))
+document.forms.f1(3).value=0;
+addtr(document.forms.f1(3).value);
+		}
+	}
+	if (str2=="td"){
+if (document.forms.f1(0).checked==true)
+addtd(0)
+if (document.forms.f1(1).checked==true)
+addtd(-1)
+if (document.forms.f1(2).checked==true)
+		{
+val=document.forms.f1(3).value;
+if ((isNaN(val)==true)||(val==null)||(val=="") ||(val ==" ")||(val=="  ")||(val=="   "))
+document.forms.f1(3).value=0;
+addtd(document.forms.f1(3).value)
+		}
+	}
+	window.opener.document.forms.f0.elements.saveflag.click();
+
+	}
+</script>
+</head>
+<body>
+<form name=f1 action="add_tr.htm" method=post id=f1id>
+	<table>
+		<tr>
+			<td colspan=2>Вставить
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<input type=radio name=r1 value=2 onclick="document.forms.f1(3).style.visibility='hidden';document.all.place.style.visibility='hidden';" checked>
+			</td>
+			<td>в начало
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<input type=radio name=r1 value=4 onclick="document.forms.f1(3).style.visibility='hidden';document.all.place.style.visibility='hidden';">
+			</td>
+			<td>в конец
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<input type=radio name=r1 value=3 onclick="document.forms.f1(3).style.visibility='visible';document.all.place.style.visibility='visible';">
+			</td>
+			<td>в определенное место
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div id=place style="visibility:hidden">
+				<script>
+				if (str2=="tr")
+				document.write("Укажите номер строки, после которой Вы хотите вставить новую")
+				else
+				document.write("Укажите номер столбца, после которого Вы хотите вставить новый")
+				</script>
+				</div>
+			</td>
+			<td>
+				<input type=text style="visibility:hidden" size=3 maxlength=3>
+			</td>
+		</tr>
+		<tr>
+			<td><img src="vimg/add.gif" onclick="add();" alt="Добавить, не закрывая окна" unselectable=on class=btnbig1 ondrag="return false;" onmousedown="BtnDown();" onmouseup="BtnUp();">
+			</td>
+			<td><img src="vimg/close.gif" alt="Закрыть окно" unselectable=on class=btnbig1 onclick="window.opener.document.all.edit.focus();window.self.close();" ondrag="return false;" onmousedown="BtnDown();" onmouseup="BtnUp();">
+			</td>
+		</tr>
+	</table>
+</form>
+</body>
+</html>
